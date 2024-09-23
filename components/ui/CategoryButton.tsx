@@ -2,13 +2,13 @@ import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
 import { Pressable, StyleSheet, Text } from 'react-native'
 
-interface ICategoryButton {
+interface ICategoryButtonProps {
 	title: string
 	onPress?: () => void
 	isActive: boolean
 }
 
-const CategoryButton: React.FC<ICategoryButton> = ({
+const CategoryButton: React.FC<ICategoryButtonProps> = ({
 	title,
 	onPress,
 	isActive,

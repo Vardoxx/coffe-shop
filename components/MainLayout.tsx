@@ -1,8 +1,8 @@
+import { items } from '@/constants/main-layout.items'
 import { Ionicons } from '@expo/vector-icons'
 import { Href, Link, usePathname } from 'expo-router'
 import React, { PropsWithChildren } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { items } from '../../constants/main-layout.items'
 
 const MainLayout = ({ children }: PropsWithChildren) => {
 	const pathname = usePathname()
@@ -19,11 +19,11 @@ const MainLayout = ({ children }: PropsWithChildren) => {
 							{`/(main)${pathname}` !== item.path ? (
 								<Ionicons
 									name={`${item.icon}-outline`}
-									size={45}
+									size={35}
 									color='#00512C'
 								/>
 							) : (
-								<Ionicons name={item.icon} size={45} color='#00512C' />
+								<Ionicons name={item.icon} size={35} color='#00512C' />
 							)}
 						</View>
 					</Link>

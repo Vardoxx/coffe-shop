@@ -1,4 +1,4 @@
-import MainLayout from '@/components/Main-layout/MainLayout'
+import MainLayout from '@/components/MainLayout'
 import { Slot } from 'expo-router'
 import React from 'react'
 
