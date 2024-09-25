@@ -5,7 +5,7 @@ import { items as categoryItems } from '@/constants/category.items'
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
-const Categories = () => {
+const Content = () => {
 	const [active, setActive] = useState('Cappuccino')
 	return (
 		<View>
@@ -32,12 +32,16 @@ const Categories = () => {
 					/>
 				))}
 			</ScrollView>
-			<Products sortingValue={active} />
+			<Products value={'title'} sortingValue={active} />
+			<Wrapper>
+				<Text style={styles.title}>Special Offer</Text>
+			</Wrapper>
+			<Products value={'specialOffer'} sortingValue={true} />
 		</View>
 	)
 }
 
-export default Categories
+export default Content
 
 const styles = StyleSheet.create({
 	container: {

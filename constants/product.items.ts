@@ -7,6 +7,7 @@ export interface IProductItems {
 	title: string
 	description: string
 	cost: number
+	specialOffer: boolean
 }
 
 export const items: IProductItems[] = [
@@ -16,6 +17,71 @@ export const items: IProductItems[] = [
 		title: 'Cappuccino',
 		description: 'With sugar',
 		cost: 200.0,
+		specialOffer: false,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: false,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: false,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: false,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: false,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: false,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: true,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: false,
+	},
+	{
+		id: generateId(),
+		srcImg: require('../assets/coffee1.png'),
+		title: 'Cappuccino',
+		description: 'With sugar',
+		cost: 200.0,
+		specialOffer: false,
 	},
 	{
 		id: generateId(),
@@ -23,6 +89,7 @@ export const items: IProductItems[] = [
 		title: 'Cappuccino',
 		description: 'With sugar',
 		cost: 200.0,
+		specialOffer: true,
 	},
 	{
 		id: generateId(),
@@ -30,6 +97,7 @@ export const items: IProductItems[] = [
 		title: 'Latte',
 		description: 'With sugar',
 		cost: 130.0,
+		specialOffer: false,
 	},
 	{
 		id: generateId(),
@@ -37,5 +105,6 @@ export const items: IProductItems[] = [
 		title: 'Coffee',
 		description: 'With sugar',
 		cost: 80.0,
+		specialOffer: false,
 	},
 ]

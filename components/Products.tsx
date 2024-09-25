@@ -4,13 +4,16 @@ import { useFilter } from '@/hooks/useFilter'
 
 import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
+import NotFound from './ui/NotFound'
 
 interface IProductsProps {
-	sortingValue?: string
+	sortingValue?: string | boolean
+	value: any
 }
 
-const Products: React.FC<IProductsProps> = ({ sortingValue }) => {
-	const [mutateArray] = useFilter(items, sortingValue)
+const Products: React.FC<IProductsProps> = ({ sortingValue, value }) => {
+	const [mutateArray] = useFilter(items, value, sortingValue)
+	if (!mutateArray.length) return <NotFound />
 
 	return (
 		<ScrollView
@@ -24,6 +27,7 @@ const Products: React.FC<IProductsProps> = ({ sortingValue }) => {
 				gap: 15,
 				paddingHorizontal: 10,
 				paddingBottom: 10,
+				position: 'relative',
 			}}
 		>
 			{mutateArray.map(e => (

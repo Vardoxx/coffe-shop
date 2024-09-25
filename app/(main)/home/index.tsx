@@ -1,13 +1,14 @@
-import { StyleSheet, View } from 'react-native'
-import Categories from './Categories'
+import { ScrollView, StyleSheet } from 'react-native'
+
+import Content from './Content'
 import Header from './Header'
 
 const Home = () => {
 	return (
-		<View style={styles.container}>
+		<ScrollView contentContainerStyle={styles.container}>
 			<Header />
-			<Categories />
-		</View>
+			<Content />
+		</ScrollView>
 	)
 }
 
@@ -16,8 +17,7 @@ export default Home
 const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
-		width: '100%',
-		height: '100%',
+		paddingBottom: 60,
 		gap: 50,
 	},
 })
