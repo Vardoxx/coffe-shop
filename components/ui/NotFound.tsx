@@ -16,10 +16,13 @@ export default NotFound
 const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
-		gap: 15,
+		gap: 20,
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: 200,
+		height: 210,
+		marginVertical: 15,
+		paddingHorizontal: 10,
+		paddingBottom: 10,
 	},
 	text: {
 		fontSize: 20,

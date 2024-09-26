@@ -2,11 +2,13 @@ import Wrapper from '@/app/--wrapper'
 import Products from '@/components/Products'
 import CategoryButton from '@/components/ui/CategoryButton'
 import { items as categoryItems } from '@/constants/category.items'
+import { items } from '@/constants/product.items'
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 const Content = () => {
 	const [active, setActive] = useState('Cappuccino')
+
 	return (
 		<View>
 			<Wrapper>
@@ -32,11 +34,21 @@ const Content = () => {
 					/>
 				))}
 			</ScrollView>
-			<Products value={'title'} sortingValue={active} />
+			<Products
+				scrollable={true}
+				items={items}
+				value={'title'}
+				sortingValue={active}
+			/>
 			<Wrapper>
 				<Text style={styles.title}>Special Offer</Text>
 			</Wrapper>
-			<Products value={'specialOffer'} sortingValue={true} />
+			<Products
+				scrollable={true}
+				items={items}
+				value={'specialOffer'}
+				sortingValue={true}
+			/>
 		</View>
 	)
 }

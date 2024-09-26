@@ -1,13 +1,9 @@
+import { addToFavorites } from '@/store/slices/favorite.slice'
+import { RootState } from '@/store/store'
 import { AntDesign } from '@expo/vector-icons'
 import React from 'react'
-import {
-	Image,
-	ImageProps,
-	Pressable,
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native'
+import { Image, ImageProps, StyleSheet, Text, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 
 interface IProductCardProps {
 	id: number
@@ -15,7 +11,7 @@ interface IProductCardProps {
 	title: string
 	description: string
 	cost: number
-	onPress: () => void
+	isFavorite: 'heart' | 'hearto'
 }
 
 const ProductCard: React.FC<IProductCardProps> = ({
@@ -24,11 +20,20 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	title,
 	description,
 	cost,
-	onPress,
+	isFavorite,
 }) => {
 	const coffeeImg = srcImg
+	const dispatch = useDispatch()
+	const favorites = useSelector(
+		(state: RootState) => state.favoriteReducer.items
+	)
+
+	const handleAddToFavorite = () => {
+		dispatch(addToFavorites({ id, srcImg, title, description, cost }))
+	}
+
 	return (
-		<View style={styles.container}>
+		<View key={id} style={styles.container}>
 			<Image style={styles.image} source={coffeeImg} />
 			<Text style={styles.title}>{title}</Text>
 			<Text style={styles.description}>{description}</Text>
@@ -47,17 +52,22 @@ const ProductCard: React.FC<IProductCardProps> = ({
 					{cost}
 				</Text>
 			</View>
-			<Pressable
-				onPress={onPress}
-				hitSlop={{ top: 20, bottom: 10, right: 15, left: 10 }}
-			>
-				<AntDesign
-					name='pluscircle'
-					color='#00512C'
-					size={33}
-					style={{ position: 'absolute', bottom: 10, right: 10 }}
-				/>
-			</Pressable>
+
+			<AntDesign
+				onPress={() => handleAddToFavorite()}
+				name={isFavorite}
+				color='#FF4848'
+				size={25}
+				style={{ position: 'absolute', bottom: 60, right: 14, zIndex: 2000 }}
+			/>
+
+			<AntDesign
+				// onPress={}
+				name='pluscircle'
+				color='#00512C'
+				size={30}
+				style={{ position: 'absolute', bottom: 10, right: 12 }}
+			/>
 		</View>
 	)
 }
