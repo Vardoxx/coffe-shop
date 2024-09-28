@@ -36,7 +36,7 @@ export default function WelcomeScreen() {
 					The best grain, the finest rosa, the most powerful flavor.
 				</Text>
 
-				<Button href='/(main)' title='Get started'></Button>
+				<Button link={true} href='/main/home' title='Get started' />
 			</View>
 		</ImageBackground>
 	)
@@ -58,6 +58,4 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		gap: 20,
 	},
-
-	button: { backgroundColor: '#00512C' },
 })

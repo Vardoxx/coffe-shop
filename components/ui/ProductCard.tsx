@@ -1,9 +1,18 @@
+import { IProductItems } from '@/constants/product.items'
 import { addToFavorites } from '@/store/slices/favorite.slice'
-import { RootState } from '@/store/store'
+import { addViewItem } from '@/store/slices/view.slice'
 import { AntDesign } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
 import React from 'react'
-import { Image, ImageProps, StyleSheet, Text, View } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import {
+	Image,
+	ImageProps,
+	Pressable,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native'
+import { useDispatch } from 'react-redux'
 
 interface IProductCardProps {
 	id: number
@@ -12,6 +21,7 @@ interface IProductCardProps {
 	description: string
 	cost: number
 	isFavorite: 'heart' | 'hearto'
+	viewItem: IProductItems
 }
 
 const ProductCard: React.FC<IProductCardProps> = ({
@@ -21,54 +31,60 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	description,
 	cost,
 	isFavorite,
+	viewItem,
 }) => {
+	const router = useRouter()
+
 	const coffeeImg = srcImg
 	const dispatch = useDispatch()
-	const favorites = useSelector(
-		(state: RootState) => state.favoriteReducer.items
-	)
+
+	const handleViewItem = () => {
+		router.push('/view')
+		dispatch(addViewItem(viewItem))
+	}
 
 	const handleAddToFavorite = () => {
 		dispatch(addToFavorites({ id, srcImg, title, description, cost }))
 	}
 
 	return (
-		<View key={id} style={styles.container}>
-			<Image style={styles.image} source={coffeeImg} />
-			<Text style={styles.title}>{title}</Text>
-			<Text style={styles.description}>{description}</Text>
-			<View style={styles.cost}>
-				<Text
-					style={{
-						position: 'absolute',
-						top: -2,
-						fontWeight: '500',
-						fontSize: 12,
-					}}
-				>
-					₽
-				</Text>
-				<Text style={{ marginLeft: 10, fontWeight: 'bold', fontSize: 18 }}>
-					{cost}
-				</Text>
+		<Pressable onPress={handleViewItem}>
+			<View key={id} style={styles.container}>
+				<Image resizeMode='cover' style={styles.image} source={coffeeImg} />
+				<Text style={styles.title}>{title}</Text>
+				<Text style={styles.description}>{description}</Text>
+				<View style={styles.cost}>
+					<Text
+						style={{
+							position: 'absolute',
+							top: -2,
+							fontWeight: '500',
+							fontSize: 12,
+						}}
+					>
+						₽
+					</Text>
+					<Text style={{ marginLeft: 10, fontWeight: 'bold', fontSize: 18 }}>
+						{cost}
+					</Text>
+				</View>
+
+				<AntDesign
+					onPress={() => handleAddToFavorite()}
+					name={isFavorite}
+					color='#FF4848'
+					size={25}
+					style={{ position: 'absolute', bottom: 60, right: 14, zIndex: 2000 }}
+				/>
+
+				<AntDesign
+					name='pluscircle'
+					color='#00512C'
+					size={30}
+					style={{ position: 'absolute', bottom: 10, right: 12 }}
+				/>
 			</View>
-
-			<AntDesign
-				onPress={() => handleAddToFavorite()}
-				name={isFavorite}
-				color='#FF4848'
-				size={25}
-				style={{ position: 'absolute', bottom: 60, right: 14, zIndex: 2000 }}
-			/>
-
-			<AntDesign
-				// onPress={}
-				name='pluscircle'
-				color='#00512C'
-				size={30}
-				style={{ position: 'absolute', bottom: 10, right: 12 }}
-			/>
-		</View>
+		</Pressable>
 	)
 }
 

@@ -85,7 +85,7 @@ export const items: IProductItems[] = [
 	},
 	{
 		id: generateId(),
-		srcImg: require('../assets/coffee2.png'),
+		srcImg: require('../assets/coffee5.png'),
 		title: 'Cappuccino',
 		description: 'With sugar',
 		cost: 200.0,

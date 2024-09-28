@@ -8,18 +8,18 @@ export interface IMainLayoutItems {
 export const items: IMainLayoutItems[] = [
 	{
 		icon: 'home',
-		path: '/(main)/home',
+		path: '/main/home',
 	},
 	{
 		icon: 'heart',
-		path: '/(main)/favorite',
+		path: '/main/favorite',
 	},
 	{
 		icon: 'cart',
-		path: '/(main)/cart',
+		path: '/main/cart',
 	},
 	{
 		icon: 'person',
-		path: '/(main)/user',
+		path: '/main/user',
 	},
 ]

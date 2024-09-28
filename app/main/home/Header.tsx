@@ -29,7 +29,7 @@ const Header = () => {
 						color: 'gray',
 					}}
 				>
-					Good morning,{' '}
+					Good morning,
 					<Text style={{ fontWeight: '700', color: 'black' }}>Alex</Text>!
 				</Text>
 			</View>

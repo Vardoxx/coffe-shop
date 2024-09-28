@@ -4,7 +4,7 @@ import { Href, Link, usePathname } from 'expo-router'
 import React, { PropsWithChildren } from 'react'
 import { StyleSheet, View } from 'react-native'
 
-const MainLayout = ({ children }: PropsWithChildren) => {
+const CMainLayout = ({ children }: PropsWithChildren) => {
 	const pathname = usePathname()
 
 	return (
@@ -16,7 +16,7 @@ const MainLayout = ({ children }: PropsWithChildren) => {
 						href={item.path as Href<string | object>}
 					>
 						<View>
-							{`/(main)${pathname}` !== item.path ? (
+							{`${pathname}` !== item.path ? (
 								<Ionicons
 									name={`${item.icon}-outline`}
 									size={35}
@@ -34,7 +34,7 @@ const MainLayout = ({ children }: PropsWithChildren) => {
 	)
 }
 
-export default MainLayout
+export default CMainLayout
 
 const styles = StyleSheet.create({
 	container: {

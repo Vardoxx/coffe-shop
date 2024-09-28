@@ -58,6 +58,7 @@ const Products: React.FC<IProductsProps> = ({
 						description={e.description}
 						cost={e.cost}
 						isFavorite={favorite(e.id)}
+						viewItem={e}
 					/>
 				))}
 			</ScrollView>
@@ -85,6 +86,7 @@ const Products: React.FC<IProductsProps> = ({
 						description={e.description}
 						cost={e.cost}
 						isFavorite={favorite(e.id)}
+						viewItem={e}
 					/>
 				))}
 			</View>

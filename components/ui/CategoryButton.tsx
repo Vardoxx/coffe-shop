@@ -4,26 +4,39 @@ import { Pressable, StyleSheet, Text } from 'react-native'
 
 interface ICategoryButtonProps {
 	title: string
-	onPress?: () => void
+	onPress: () => void
 	isActive: boolean
+	icon: boolean
+	fontSize?: number
 }
 
 const CategoryButton: React.FC<ICategoryButtonProps> = ({
 	title,
 	onPress,
 	isActive,
+	icon,
+	fontSize,
 }) => {
 	return (
 		<Pressable
 			onPress={onPress}
-			style={isActive ? styles.containerActive : styles.container}
+			style={[styles.container, isActive ? styles.containerActive : null]}
 		>
-			<Ionicons
-				name='cafe-outline'
-				size={24}
-				color={isActive ? 'white' : 'black'}
-			/>
-			<Text style={{ color: isActive ? 'white' : 'black' }}>{title}</Text>
+			{icon && (
+				<Ionicons
+					name='cafe-outline'
+					size={24}
+					color={isActive ? 'white' : 'black'}
+				/>
+			)}
+			<Text
+				style={{
+					color: isActive ? 'white' : 'black',
+					fontSize: fontSize || 16,
+				}}
+			>
+				{title}
+			</Text>
 		</Pressable>
 	)
 }
@@ -34,21 +47,15 @@ const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
 		flexDirection: 'row',
-		padding: 9,
+		paddingVertical: 9,
+		paddingHorizontal: 15,
 		alignItems: 'center',
 		backgroundColor: 'white',
 		minWidth: 'auto',
 		borderRadius: 24,
-
 		elevation: 5,
 	},
 	containerActive: {
-		display: 'flex',
-		flexDirection: 'row',
-		padding: 9,
-		alignItems: 'center',
 		backgroundColor: '#00582F',
-		minWidth: 'auto',
-		borderRadius: 24,
 	},
 })

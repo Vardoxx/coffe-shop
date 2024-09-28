@@ -30,7 +30,8 @@ const Content = () => {
 						key={e.value}
 						title={e.value}
 						onPress={() => setActive(e.value)}
-						isActive={active === e.value ? true : false}
+						isActive={active === e.value}
+						icon={true}
 					/>
 				))}
 			</ScrollView>
