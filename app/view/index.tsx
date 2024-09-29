@@ -1,3 +1,4 @@
+import { useIdChecker } from '@/hooks/useIdChecker'
 import { addToFavorites } from '@/store/slices/favorite.slice'
 import { removeViewItem } from '@/store/slices/view.slice'
 import { RootState } from '@/store/store'
@@ -14,14 +15,7 @@ const ViewScreen = () => {
 	const backUp = useRouter()
 	const viewItem = useSelector((state: RootState) => state.viewReducer.viewItem)
 
-	const favoritesProducts = useSelector(
-		(state: RootState) => state.favoriteReducer.items
-	)
-
-	const favorite = (): 'heart' | 'hearto' => {
-		if (favoritesProducts.find(e => e.id === viewItem.id)) return 'heart'
-		else return 'hearto'
-	}
+	const [inFavorite] = useIdChecker()
 
 	const handleBack = () => {
 		dispatch(removeViewItem())
@@ -40,9 +34,9 @@ const ViewScreen = () => {
 			<View style={styles.heart}>
 				<AntDesign
 					onPress={() => dispatch(addToFavorites(viewItem))}
-					name={favorite()}
+					name={inFavorite(Number(viewItem.id)) ? 'heart' : 'hearto'}
 					size={30}
-					color={favorite() !== 'hearto' ? '#FF4848' : 'white'}
+					color={inFavorite(Number(viewItem.id)) ? '#FF4848' : 'white'}
 				/>
 			</View>
 			<View style={{ width: '100%', height: '100%' }}>

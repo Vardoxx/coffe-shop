@@ -21,6 +21,7 @@ interface IProductCardProps {
 	description: string
 	cost: number
 	isFavorite: 'heart' | 'hearto'
+	isCart: 'checkcircle' | 'pluscircle'
 	viewItem: IProductItems
 }
 
@@ -31,6 +32,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	description,
 	cost,
 	isFavorite,
+	isCart,
 	viewItem,
 }) => {
 	const router = useRouter()
@@ -78,7 +80,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 				/>
 
 				<AntDesign
-					name='pluscircle'
+					name={isCart}
 					color='#00512C'
 					size={30}
 					style={{ position: 'absolute', bottom: 10, right: 12 }}

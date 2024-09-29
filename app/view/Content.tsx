@@ -1,17 +1,22 @@
 import Button from '@/components/ui/Button'
 import CategoryButton from '@/components/ui/CategoryButton'
 import { cupSizeItems, sugarLvlItems } from '@/constants/category.items'
+import { useIdChecker } from '@/hooks/useIdChecker'
+import { addToCart } from '@/store/slices/cart.slice'
 import { RootState } from '@/store/store'
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Wrapper from '../--wrapper'
 
 const Content = () => {
+	const dispatch = useDispatch()
 	const [activeSize, setActiveSize] = useState('Medium')
 	const [activeSugar, setActiveSugar] = useState('No Sugar')
 
 	const viewItem = useSelector((state: RootState) => state.viewReducer.viewItem)
+
+	const [inFavorite, inCart] = useIdChecker()
 
 	return (
 		<View style={styles.container}>
@@ -62,11 +67,16 @@ const Content = () => {
 			</Wrapper>
 			<Wrapper>
 				<Button
-					onPress={() => console.log()}
+					onPress={() => dispatch(addToCart(viewItem))}
 					height={75}
 					link={false}
-					title={`Add to cart | ${viewItem.cost} ₽`}
+					title={
+						inCart(Number(viewItem.id))
+							? `Remove from cart`
+							: `Add to cart | ${viewItem.cost} ₽`
+					}
 					fontSize={20}
+					bgColor={inCart(Number(viewItem.id)) ? '#FF4848' : ''}
 				/>
 			</Wrapper>
 		</View>

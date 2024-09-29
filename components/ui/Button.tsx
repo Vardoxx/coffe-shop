@@ -5,11 +5,12 @@ import { Pressable, StyleSheet, Text } from 'react-native'
 interface IButtonProps {
 	title: string | number
 	link: boolean
-	onPress: () => void
+	onPress?: () => void
 	href?: Href<string | object>
 	width?: number
 	height?: number
 	fontSize?: number
+	bgColor?: string
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -20,6 +21,7 @@ const Button: React.FC<IButtonProps> = ({
 	width,
 	height,
 	fontSize,
+	bgColor,
 }) => {
 	return (
 		<>
@@ -32,7 +34,7 @@ const Button: React.FC<IButtonProps> = ({
 						paddingHorizontal: 32,
 						borderRadius: 20,
 						elevation: 3,
-						backgroundColor: '#00512C',
+						backgroundColor: bgColor ? bgColor : '#00512C',
 						width: width,
 						height: height,
 					}}
@@ -61,7 +63,7 @@ const Button: React.FC<IButtonProps> = ({
 						paddingHorizontal: 32,
 						borderRadius: 20,
 						elevation: 3,
-						backgroundColor: '#00512C',
+						backgroundColor: bgColor ? bgColor : '#00512C',
 						width: width,
 						height: height,
 					}}
