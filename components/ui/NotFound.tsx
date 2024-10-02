@@ -2,11 +2,15 @@ import { Entypo } from '@expo/vector-icons'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const NotFound = () => {
+interface INotFoundProps {
+	title: string
+}
+
+const NotFound: React.FC<INotFoundProps> = ({ title }) => {
 	return (
 		<View style={styles.container}>
 			<Entypo name='emoji-sad' size={80} color='black' />
-			<Text style={styles.text}>Not Found</Text>
+			<Text style={styles.text}>{title}</Text>
 		</View>
 	)
 }

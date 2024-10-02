@@ -17,7 +17,7 @@ const Favorite = () => {
 					<Text style={{ fontWeight: '700', fontSize: 20, marginBottom: 15 }}>
 						Favorites
 					</Text>
-					<Products scrollable={false} items={favoritesProduct} />
+					<Products productsType='default' items={favoritesProduct} />
 				</View>
 			</Wrapper>
 		</ScrollView>

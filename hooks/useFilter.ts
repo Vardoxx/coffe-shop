@@ -13,6 +13,7 @@ export const useFilter = (
 	const favorites = useSelector(
 		(state: RootState) => state.favoriteReducer.items
 	)
+	const cart = useSelector((state: RootState) => state.cartReducer.items)
 
 	useEffect(() => {
 		let sortingArray = [...mutateArray]
@@ -25,7 +26,7 @@ export const useFilter = (
 				break
 		}
 		setMutateArray(sortingArray)
-	}, [sortingValue, value, favorites])
+	}, [sortingValue, value, favorites, cart])
 
 	return [mutateArray]
 }

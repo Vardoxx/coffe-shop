@@ -8,6 +8,9 @@ export interface IProductItems {
 	description: string
 	cost: number
 	specialOffer: boolean
+	cupSize?: string
+	sugarLvl?: string
+	quantity?: number
 }
 
 export const items: IProductItems[] = [
@@ -18,6 +21,7 @@ export const items: IProductItems[] = [
 		description: 'With sugar',
 		cost: 200.0,
 		specialOffer: false,
+		quantity: 0,
 	},
 	{
 		id: generateId(),
@@ -26,6 +30,7 @@ export const items: IProductItems[] = [
 		description: 'With sugar',
 		cost: 200.0,
 		specialOffer: false,
+		quantity: 0,
 	},
 	{
 		id: generateId(),
@@ -34,6 +39,7 @@ export const items: IProductItems[] = [
 		description: 'With sugar',
 		cost: 200.0,
 		specialOffer: false,
+		quantity: 0,
 	},
 	{
 		id: generateId(),

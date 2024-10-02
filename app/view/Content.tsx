@@ -4,17 +4,52 @@ import { cupSizeItems, sugarLvlItems } from '@/constants/category.items'
 import { useIdChecker } from '@/hooks/useIdChecker'
 import { addToCart } from '@/store/slices/cart.slice'
 import { RootState } from '@/store/store'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import Wrapper from '../--wrapper'
 
 const Content = () => {
 	const dispatch = useDispatch()
-	const [activeSize, setActiveSize] = useState('Medium')
-	const [activeSugar, setActiveSugar] = useState('No Sugar')
+	const [activeSize, setActiveSize] = useState<'Small' | 'Medium' | 'Large'>(
+		'Small'
+	)
+	const [activeSugar, setActiveSugar] = useState<'No Sugar' | 'Low' | 'Medium'>(
+		'No Sugar'
+	)
 
 	const viewItem = useSelector((state: RootState) => state.viewReducer.viewItem)
+
+	const [cartProduct, setCartProduct] = useState(viewItem)
+
+	useEffect(() => {
+		let baseCost = viewItem.cost || 0
+		let costAdjustment = 0
+
+		if (activeSize === 'Medium') {
+			costAdjustment += baseCost * 0.2
+		}
+
+		if (activeSize === 'Large') {
+			costAdjustment += baseCost * 0.5
+		}
+
+		if (activeSugar === 'Low') {
+			costAdjustment += 10
+		}
+
+		if (activeSugar === 'Medium') {
+			costAdjustment += 30
+		}
+
+		const finalCost = Math.max(baseCost + costAdjustment, 0)
+		setCartProduct({
+			...viewItem,
+			cost: finalCost,
+			cupSize: activeSize,
+			sugarLvl: activeSugar,
+		})
+	}, [activeSize, activeSugar])
 
 	const [inFavorite, inCart] = useIdChecker()
 
@@ -27,7 +62,9 @@ const Content = () => {
 						<CategoryButton
 							key={e.value}
 							title={e.value}
-							onPress={() => setActiveSize(e.value)}
+							onPress={() =>
+								setActiveSize(e.value as 'Small' | 'Medium' | 'Large')
+							}
 							isActive={activeSize === e.value}
 							icon={false}
 							fontSize={20}
@@ -43,7 +80,9 @@ const Content = () => {
 						<CategoryButton
 							key={e.value}
 							title={e.value}
-							onPress={() => setActiveSugar(e.value)}
+							onPress={() =>
+								setActiveSugar(e.value as 'No Sugar' | 'Low' | 'Medium')
+							}
 							isActive={activeSugar === e.value}
 							icon={false}
 							fontSize={20}
@@ -67,13 +106,13 @@ const Content = () => {
 			</Wrapper>
 			<Wrapper>
 				<Button
-					onPress={() => dispatch(addToCart(viewItem))}
+					onPress={() => dispatch(addToCart(cartProduct))}
 					height={75}
 					link={false}
 					title={
 						inCart(Number(viewItem.id))
 							? `Remove from cart`
-							: `Add to cart | ${viewItem.cost} ₽`
+							: `Add to cart | ${cartProduct.cost} ₽`
 					}
 					fontSize={20}
 					bgColor={inCart(Number(viewItem.id)) ? '#FF4848' : ''}

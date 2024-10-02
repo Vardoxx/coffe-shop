@@ -36,7 +36,7 @@ const Content = () => {
 				))}
 			</ScrollView>
 			<Products
-				scrollable={true}
+				productsType='scrollable'
 				items={items}
 				value={'title'}
 				sortingValue={active}
@@ -45,7 +45,7 @@ const Content = () => {
 				<Text style={styles.title}>Special Offer</Text>
 			</Wrapper>
 			<Products
-				scrollable={true}
+				productsType='scrollable'
 				items={items}
 				value={'specialOffer'}
 				sortingValue={true}
